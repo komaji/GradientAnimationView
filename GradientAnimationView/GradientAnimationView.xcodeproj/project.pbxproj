@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		2B356616209A1F1600E13545 /* GradientAnimationView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B356614209A1F1600E13545 /* GradientAnimationView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2B919079209A23830004328D /* GradientAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B919078209A23830004328D /* GradientAnimationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2B356611209A1F1600E13545 /* GradientAnimationView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GradientAnimationView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B356614209A1F1600E13545 /* GradientAnimationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GradientAnimationView.h; sourceTree = "<group>"; };
 		2B356615209A1F1600E13545 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B919078209A23830004328D /* GradientAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientAnimationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +50,7 @@
 			children = (
 				2B356614209A1F1600E13545 /* GradientAnimationView.h */,
 				2B356615209A1F1600E13545 /* Info.plist */,
+				2B919078209A23830004328D /* GradientAnimationView.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -95,6 +98,7 @@
 				TargetAttributes = {
 					2B356610209A1F1600E13545 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -131,6 +135,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B919079209A23830004328D /* GradientAnimationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +258,7 @@
 		2B35661A209A1F1600E13545 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -265,6 +271,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.komaji.GradientAnimationView;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -273,6 +280,7 @@
 		2B35661B209A1F1600E13545 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
