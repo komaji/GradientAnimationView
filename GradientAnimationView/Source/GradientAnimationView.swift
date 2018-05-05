@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GradientAnimationView: UIView {
+public class GradientAnimationView: UIView {
     
     let fromGradientPoints = (start: CGPoint(x: -1.0, y: 0.5), end: CGPoint(x: 0.0, y: 0.5))
     let toGradientPoints = (start: CGPoint(x: 1.0, y: 0.5), end: CGPoint(x: 2.0, y: 0.5))
@@ -28,14 +28,14 @@ class GradientAnimationView: UIView {
         return gradientLayer
     }()
     
-    override func awakeFromNib() {
+    public override func awakeFromNib() {
         super.awakeFromNib()
         
         layer.addSublayer(gradientLayer)
         startAnimating()
     }
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         
         gradientLayer.frame = bounds
