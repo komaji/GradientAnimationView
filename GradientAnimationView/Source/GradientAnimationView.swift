@@ -28,11 +28,15 @@ public class GradientAnimationView: UIView {
         return gradientLayer
     }()
     
-    public override func awakeFromNib() {
-        super.awakeFromNib()
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
         
         layer.addSublayer(gradientLayer)
         startAnimating()
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     public override func layoutSubviews() {
