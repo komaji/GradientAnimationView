@@ -35,17 +35,13 @@ public class GradientAnimationView: UIView {
             startPointAnimation.duration = animationDuration
             endPointAnimation.duration = animationDuration
             animationGroup.duration = animationDuration + waitingDuration
-            
-            gradientLayer.removeAnimation(forKey: animationKey)
-            gradientLayer.add(animationGroup, forKey: animationKey)
+            restartAnimation()
         }
     }
     public var waitingDuration: CFTimeInterval = 0.5 {
         didSet {
             animationGroup.duration = animationDuration + waitingDuration
-            
-            gradientLayer.removeAnimation(forKey: animationKey)
-            gradientLayer.add(animationGroup, forKey: animationKey)
+            restartAnimation()
         }
     }
     
@@ -99,7 +95,7 @@ public class GradientAnimationView: UIView {
         super.init(frame: frame)
         
         layer.addSublayer(gradientLayer)
-        gradientLayer.add(animationGroup, forKey: animationKey)
+        startAnimation()
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -110,6 +106,15 @@ public class GradientAnimationView: UIView {
         super.layoutSubviews()
         
         gradientLayer.frame = bounds
+    }
+    
+    func startAnimation() {
+        gradientLayer.add(animationGroup, forKey: animationKey)
+    }
+    
+    func restartAnimation() {
+        gradientLayer.removeAnimation(forKey: animationKey)
+        startAnimation()
     }
     
 }
