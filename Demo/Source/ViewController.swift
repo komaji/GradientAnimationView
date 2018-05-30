@@ -14,6 +14,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var gradientAnimationBackgroundView: UIView! {
         didSet {
             let view = GradientAnimationView()
+            view.cornerRadius = 5.0
+            view.sideColor = .gray
+            view.centerColor = .lightGray
+            view.animationDuration = 1.2
+            view.waitingDuration = 0.6
             gradientAnimationBackgroundView.addSubview(view)
             
             view.translatesAutoresizingMaskIntoConstraints = false
