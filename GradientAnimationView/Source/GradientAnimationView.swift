@@ -30,7 +30,26 @@ public class GradientAnimationView: UIView {
             }
         }
     }
+    public var animationDuration: CFTimeInterval = 1.0 {
+        didSet {
+            startPointAnimation.duration = animationDuration
+            endPointAnimation.duration = animationDuration
+            animationGroup.duration = animationDuration + waitingDuration
+            
+            gradientLayer.removeAnimation(forKey: animationKey)
+            gradientLayer.add(animationGroup, forKey: animationKey)
+        }
+    }
+    public var waitingDuration: CFTimeInterval = 0.5 {
+        didSet {
+            animationGroup.duration = animationDuration + waitingDuration
+            
+            gradientLayer.removeAnimation(forKey: animationKey)
+            gradientLayer.add(animationGroup, forKey: animationKey)
+        }
+    }
     
+    let animationKey = "GradientAnimation"
     let fromGradientPoints = (start: CGPoint(x: -1.0, y: 0.5), end: CGPoint(x: 0.0, y: 0.5))
     let toGradientPoints = (start: CGPoint(x: 1.0, y: 0.5), end: CGPoint(x: 2.0, y: 0.5))
     
@@ -51,12 +70,36 @@ public class GradientAnimationView: UIView {
         
         return gradientLayer
     }()
+    lazy var startPointAnimation: CABasicAnimation = {
+        let animation = CABasicAnimation(keyPath: #keyPath(CAGradientLayer.startPoint))
+        animation.fromValue = fromGradientPoints.start
+        animation.toValue = toGradientPoints.end
+        animation.duration = animationDuration
+        
+        return animation
+    }()
+    lazy var endPointAnimation: CABasicAnimation = {
+        let animation = CABasicAnimation(keyPath: #keyPath(CAGradientLayer.endPoint))
+        animation.fromValue = fromGradientPoints.end
+        animation.toValue = toGradientPoints.end
+        animation.duration = animationDuration
+        
+        return animation
+    }()
+    lazy var animationGroup: CAAnimationGroup = {
+        let group = CAAnimationGroup()
+        group.animations = [startPointAnimation, endPointAnimation]
+        group.duration = animationDuration + waitingDuration
+        group.repeatCount = .infinity
+        
+        return group
+    }()
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
         
         layer.addSublayer(gradientLayer)
-        startAnimating()
+        gradientLayer.add(animationGroup, forKey: animationKey)
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -67,28 +110,6 @@ public class GradientAnimationView: UIView {
         super.layoutSubviews()
         
         gradientLayer.frame = bounds
-    }
-    
-    func startAnimating() {
-        let animationDuration: CFTimeInterval = 1.0
-        let waitingDuration: CFTimeInterval = 0.5
-        
-        let startPointAnimation = CABasicAnimation(keyPath: #keyPath(CAGradientLayer.startPoint))
-        startPointAnimation.fromValue = fromGradientPoints.start
-        startPointAnimation.toValue = toGradientPoints.end
-        startPointAnimation.duration = animationDuration
-        
-        let endPointAnimation = CABasicAnimation(keyPath: #keyPath(CAGradientLayer.endPoint))
-        endPointAnimation.fromValue = fromGradientPoints.end
-        endPointAnimation.toValue = toGradientPoints.end
-        endPointAnimation.duration = animationDuration
-        
-        let group = CAAnimationGroup()
-        group.animations = [startPointAnimation, endPointAnimation]
-        group.duration = animationDuration + waitingDuration
-        group.repeatCount = .infinity
-        
-        gradientLayer.add(group, forKey: nil)
     }
     
 }
