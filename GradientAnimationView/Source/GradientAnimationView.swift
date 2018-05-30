@@ -10,8 +10,8 @@ import UIKit
 
 public class GradientAnimationView: UIView {
     
-    public var centerColor = #colorLiteral(red: 0.9633155465, green: 0.9633155465, blue: 0.9633155465, alpha: 1).cgColor
-    public var sideColor = #colorLiteral(red: 0.9467939734, green: 0.9468161464, blue: 0.9468042254, alpha: 1).cgColor
+    public var centerColor = #colorLiteral(red: 0.9633155465, green: 0.9633155465, blue: 0.9633155465, alpha: 1)
+    public var sideColor = #colorLiteral(red: 0.9467939734, green: 0.9468161464, blue: 0.9468042254, alpha: 1)
     public var cornerRadius: CGFloat = 0.0 {
         didSet {
             layer.cornerRadius = cornerRadius
@@ -26,10 +26,17 @@ public class GradientAnimationView: UIView {
     let fromGradientPoints = (start: CGPoint(x: -1.0, y: 0.5), end: CGPoint(x: 0.0, y: 0.5))
     let toGradientPoints = (start: CGPoint(x: 1.0, y: 0.5), end: CGPoint(x: 2.0, y: 0.5))
     
+    var centerCGColor: CGColor {
+        return centerColor.cgColor
+    }
+    var sideCGColor: CGColor {
+        return sideColor.cgColor
+    }
+    
     lazy var gradientLayer: CAGradientLayer = {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = bounds
-        gradientLayer.colors = [sideColor, centerColor, sideColor]
+        gradientLayer.colors = [sideCGColor, centerCGColor, sideCGColor]
         
         gradientLayer.startPoint = fromGradientPoints.start
         gradientLayer.endPoint = fromGradientPoints.end
