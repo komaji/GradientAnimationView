@@ -10,12 +10,12 @@ import UIKit
 
 public class GradientAnimationView: UIView {
     
-    public var centerColor = #colorLiteral(red: 0.9633155465, green: 0.9633155465, blue: 0.9633155465, alpha: 1) {
+    public var centerColor = #colorLiteral(red: 0.934212029, green: 0.934212029, blue: 0.934212029, alpha: 1) {
         didSet {
             gradientLayer.colors = [sideCGColor, centerCGColor, sideCGColor]
         }
     }
-    public var sideColor = #colorLiteral(red: 0.9467939734, green: 0.9468161464, blue: 0.9468042254, alpha: 1) {
+    public var sideColor = #colorLiteral(red: 0.8774915338, green: 0.8774915338, blue: 0.8774915338, alpha: 1) {
         didSet {
             gradientLayer.colors = [sideCGColor, centerCGColor, sideCGColor]
         }
