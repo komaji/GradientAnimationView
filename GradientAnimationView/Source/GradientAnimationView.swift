@@ -94,18 +94,24 @@ public class GradientAnimationView: UIView {
     public override init(frame: CGRect) {
         super.init(frame: frame)
         
-        layer.addSublayer(gradientLayer)
-        startAnimation()
+        setUp()
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+        
+        setUp()
     }
     
     public override func layoutSubviews() {
         super.layoutSubviews()
         
         gradientLayer.frame = bounds
+    }
+    
+    func setUp() {
+        layer.addSublayer(gradientLayer)
+        startAnimation()
     }
     
     func startAnimation() {
